@@ -1,5 +1,6 @@
 {
   "name": "dmx-or-jesus",
+  "homepage": "https://labs.dreampod.com/dmx-or-jesus",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
