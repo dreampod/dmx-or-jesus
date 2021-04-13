@@ -1,7 +1,10 @@
-import logo from './logo.svg'
 import React, { useState } from 'react'
 import './App.css'
 import Modal from 'react-modal'
+import ReactGA from 'react-ga'
+
+ReactGA.initialize('G-2RHDEB92L4');
+ReactGA.pageview(window.location.pathname + window.location.search)
 
 const customStyles = {
   content : {
@@ -21,12 +24,16 @@ function getRandomInt(max) {
 function handleDMX(ui, author, quote) {
   if (author === 'dmx') {
     ui({
+      response: 'Nice!',
+      color: 'green',
       quote: quote,
       dialogue: 'Thats right! DMX said it',
       modalIsOpen: true
     })
   } else {
     ui({
+      response: 'Oops!',
+      color: 'red',
       quote: quote,
       dialogue: 'Nope, Jesus said that',
       modalIsOpen: true
@@ -37,6 +44,8 @@ function handleDMX(ui, author, quote) {
 function handleJesus(ui, author, quote) {
   if (author === 'jesus') {
     ui({
+      response: 'Nice!',
+      color: 'green',
       quote: quote,
       dialogue: 'Thats right, Jesus said it',
       modalIsOpen: true
@@ -44,6 +53,8 @@ function handleJesus(ui, author, quote) {
    
   } else {
     ui({
+      response: 'Oops!',
+      color: 'red',
       quote: quote,
       dialogue: 'Nope, that was DMX',
       modalIsOpen: true
@@ -92,7 +103,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src='dmx-or-jesus.jpg' className="DMX or Jesus" alt="logo" />
         <h1>
           DMX or Jesus?
         </h1> 
@@ -107,14 +118,14 @@ function App() {
           </table>
          
           <Modal
-          isOpen={ui.modalIsOpen}
-          onAfterOpen={afterOpenModal}
-          onRequestClose={closeModal}
-          style={customStyles}
-          contentLabel="Who said it?"
-        >
+            isOpen={ui.modalIsOpen}
+            onAfterOpen={afterOpenModal}
+            onRequestClose={closeModal}
+            style={customStyles}
+            contentLabel="Who said it?"
+          >
  
-          <h2 ref={_subtitle => (subtitle = _subtitle)}>Answer</h2>
+          <h2 ref={_subtitle => (subtitle = _subtitle)} style={{ color: ui.color + ' !important' }}>{ui.response}</h2>
           <p>"{ui.quote}"</p>
           <span className={ui.animation}>{ ui.dialogue }</span><br/><br/>
           <button onClick={() => { setui({ modalIsOpen: false })}}>close</button>
