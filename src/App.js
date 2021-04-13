@@ -25,7 +25,7 @@ function handleDMX(ui, author, quote) {
   if (author === 'dmx') {
     ui({
       response: 'Nice!',
-      color: 'green',
+      pal: 'green',
       quote: quote,
       dialogue: 'Thats right! DMX said it',
       modalIsOpen: true
@@ -33,7 +33,7 @@ function handleDMX(ui, author, quote) {
   } else {
     ui({
       response: 'Oops!',
-      color: 'red',
+      pal: 'red',
       quote: quote,
       dialogue: 'Nope, Jesus said that',
       modalIsOpen: true
@@ -45,7 +45,7 @@ function handleJesus(ui, author, quote) {
   if (author === 'jesus') {
     ui({
       response: 'Nice!',
-      color: 'green',
+      pal: 'green',
       quote: quote,
       dialogue: 'Thats right, Jesus said it',
       modalIsOpen: true
@@ -54,7 +54,7 @@ function handleJesus(ui, author, quote) {
   } else {
     ui({
       response: 'Oops!',
-      color: 'red',
+      pal: 'red',
       quote: quote,
       dialogue: 'Nope, that was DMX',
       modalIsOpen: true
@@ -64,7 +64,7 @@ function handleJesus(ui, author, quote) {
 
 function App() {
   var subtitle
-  const [ui, setui] = useState({})
+  const [ui, setui] = useState({ color: 'black'})
   const [modalIsOpen,setIsOpen] = React.useState(false)
 
   function openModal() {
@@ -73,7 +73,6 @@ function App() {
  
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
   }
  
   function closeModal(){
@@ -125,7 +124,7 @@ function App() {
             contentLabel="Who said it?"
           >
  
-          <h2 ref={_subtitle => (subtitle = _subtitle)} style={{ color: ui.color + ' !important' }}>{ui.response}</h2>
+          <h2 style={{ color: ui.pal }}>{ui.response}</h2>
           <p>"{ui.quote}"</p>
           <span className={ui.animation}>{ ui.dialogue }</span><br/><br/>
           <button onClick={() => { setui({ modalIsOpen: false })}}>close</button>
