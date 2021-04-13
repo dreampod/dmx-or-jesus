@@ -1,3 +1,7 @@
+body {
+  background-color: #282c34;
+}
+
 .App {
   text-align: center;
 }
@@ -7,6 +11,24 @@
   pointer-events: none;
 }
 
+.optionButton {
+  font-size: 2em;
+  background: transparent;
+  color: #ccc;
+}
+
+@keyframes fadeout {
+  from { opacity: 1.0 }
+  50% { opacity: 0.75 }
+  to { opacity: 0 }
+}
+
+.animate {
+  animation-iteration-count: 1;
+  animation-name: fadeout;
+  animation-duration: 3s;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -14,6 +36,7 @@
 }
 
 .App-header {
+  border: solid 1px #61DAFB;
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -22,6 +45,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  margin: 20px;
 }
 
 .App-link {
